@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyi
+*.pyx
+*.pyi
+
+# Virtual Environment
+venv/
+env/
+env_bak/
+*.venv
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools/
+devenv/
+
+# Logs
+*.log
+
+# Environment Variables
+.env
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Cache and Temporary files
+.cache/
+*.swp
+*.swo
+*.tmp
+*.tmp.*
+*.bak
+*~
+
+# Static files
+/static/uploads/
+
+# Compiled Python bytecode
+__pycache__/
+*.pyc
+
+# Database files
+#*.db
+#*.sqlite3
+
+# Unit test reports
+.coverage
+htmlcov/
+
+# Translations
+*.mo
+*.pot
