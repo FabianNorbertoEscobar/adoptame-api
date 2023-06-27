@@ -50,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cantidad\": 15,\r\n    \"codigo\": 7,\r\n    \"descripcion\": \"Ratitas de goma\",\r\n    \"precio\": 1500.0\r\n}",
+					"raw": "{\r\n    \"cantidad\": 30,\r\n    \"codigo\": 8,\r\n    \"descripcion\": \"Huesos para perros\",\r\n    \"precio\": 3500.0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
