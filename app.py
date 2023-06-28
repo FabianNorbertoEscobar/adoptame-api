@@ -2,8 +2,10 @@ from carrito import Carrito
 from inventario import Inventario
 from flask import Flask, jsonify, request, redirect
 from flasgger import Swagger, swag_from, LazyString, LazyJSONEncoder
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.json_encoder = LazyJSONEncoder
 
