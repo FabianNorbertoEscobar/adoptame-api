@@ -12,7 +12,7 @@ Proyecto del curso Full Stack Python del programa Codo a Codo del Gobierno de la
 Adóptame API es el API REST de Adóptame, un sitio web de adopción de animales (perros y gatos), donde se puede consultar para adoptar a algunos de los que están buscando una familia, leer las experiencias de otros casos de adopción y conocer dónde se encuentra el refugio en caso de querer ir a visitarlo.
 
 #### API REST:
-[API REST PROD](https://fabianescopbar.pythonanywhere.com)
+[API REST PROD](https://fabianescobar.pythonanywhere.com)
 
 ### Sitio web:
 [Adóptame](https://adoptame-ba.netlify.app)
