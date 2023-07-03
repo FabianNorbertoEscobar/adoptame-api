@@ -5,7 +5,7 @@ from flasgger import Swagger, swag_from, LazyString, LazyJSONEncoder
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins='*')
 
 app.json_encoder = LazyJSONEncoder
 
