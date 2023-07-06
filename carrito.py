@@ -4,13 +4,11 @@ from db import get_db_connection
 from flask import jsonify
 
 class Carrito:
-    # Definimos el constructor e inicializamos los atributos de instancia
     def __init__(self):
         self.conexion = get_db_connection()
         self.cursor = self.conexion.cursor()
         self.items = []
 
-    # Este método permite agregar productos del inventario al carrito.
     def agregar(self, codigo, cantidad, inventario):
         producto = inventario.consultar_producto(codigo)
         if producto is None:
@@ -33,7 +31,6 @@ class Carrito:
         self.conexion.commit()
         return jsonify({'message': 'Producto agregado al carrito correctamente.'}), 200
 
-    # Este método quita unidades de un elemento del carrito, o lo elimina.
     def quitar(self, codigo, cantidad):
         for item in self.items:
             if item.codigo == codigo:
