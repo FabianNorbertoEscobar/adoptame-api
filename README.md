@@ -28,7 +28,6 @@ Adóptame API es el API REST de Adóptame, un sitio web de adopción de animales
 
 * Fabián Norberto Escobar ([FabianNorbertoEscobar](https://github.com/FabianNorbertoEscobar))<br>
 * Camila Viñas Velázquez ([danicrystal](https://github.com/danicrystal))<br>
-* Florencia Laass ([FlorLaass](https://github.com/FlorLaass))<br>
 
 #### Tecnología utilizada
 * Python
