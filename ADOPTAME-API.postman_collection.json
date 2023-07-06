@@ -188,6 +188,117 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "persona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"apellido\": \"Escobar2\",\r\n  \"ciudad\": \"Laferrere\",\r\n  \"codigo_postal\": \"1759B\",\r\n  \"direccion\": \"Riglos 1234\",\r\n  \"dni\": \"99999999\",\r\n  \"email\": \"fabian.escobar@gmail.com\",\r\n  \"estado_civil\": \"Juntado\",\r\n  \"fecha_nacimiento\": \"1995-08-03\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"nombre\": \"Fabián\",\r\n  \"telefono\": \"+5491122334455\",\r\n  \"url_foto\": \"http://ejemplo.com/foto9.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/personas",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"apellido\": \"Escobar1\",\r\n  \"ciudad\": \"Laferrere\",\r\n  \"codigo_postal\": \"1759B\",\r\n  \"direccion\": \"Riglos 1234\",\r\n  \"dni\": \"99999999\",\r\n  \"email\": \"fabian.escobar@gmail.com\",\r\n  \"estado_civil\": \"Juntado\",\r\n  \"fecha_nacimiento\": \"1995-08-03\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"nombre\": \"Fabián\",\r\n  \"telefono\": \"+5491122334455\",\r\n  \"url_foto\": \"http://ejemplo.com/foto9.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/personas/9",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas/10",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"10"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

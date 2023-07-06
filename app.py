@@ -1,5 +1,6 @@
 from carrito import Carrito
 from inventario import Inventario
+from legajo import Legajo
 from flask import Flask, jsonify, request, redirect
 from flasgger import Swagger, swag_from, LazyString, LazyJSONEncoder
 from flask_cors import CORS
@@ -21,19 +22,20 @@ template = dict(
 )
 Swagger(app, template=template)
 
-carrito = Carrito()  # Instanciamos un carrito
-inventario = Inventario()  # Instanciamos un inventario
+carrito = Carrito()
+inventario = Inventario()
+legajo = Legajo()
 
 SWAGGER_UI = "/apidocs/"
 
-# Ruta para obtener index
-# Redirigir a swagger-ui
+
 @app.route("/")
 def index():
     """
     Ruta principal de la API que redirige al Swagger-UI.
     """
     return redirect(SWAGGER_UI)
+
 
 class ProductosResource:
 
@@ -94,20 +96,20 @@ class ProductosResource:
             "produces": ["application/json"],
             "responses": {
                 200: {
-                "description": "Datos de los productos.",
-                "schema": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "cantidad": {"type": "integer", "example": 0},
-                            "codigo": {"type": "integer", "example": 0},
-                            "descripcion": {"type": "string", "example": "string"},
-                            "precio": {"type": "integer", "example": 0},
+                    "description": "Datos de los productos.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "cantidad": {"type": "integer", "example": 0},
+                                "codigo": {"type": "integer", "example": 0},
+                                "descripcion": {"type": "string", "example": "string"},
+                                "precio": {"type": "integer", "example": 0},
+                            },
                         },
                     },
                 },
-            },
             }
         }
     )
@@ -226,6 +228,7 @@ class ProductosResource:
         """
         return inventario.eliminar_producto(codigo)
 
+
 class CarritoResource:
 
     @staticmethod
@@ -270,20 +273,20 @@ class CarritoResource:
             "produces": ["application/json"],
             "responses": {
                 200: {
-                "description": "Contenido del carrito.",
-                "schema": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "cantidad": {"type": "integer", "example": 0},
-                            "codigo": {"type": "integer", "example": 0},
-                            "descripcion": {"type": "string", "example": "string"},
-                            "precio": {"type": "integer", "example": 0},
+                    "description": "Contenido del carrito.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "cantidad": {"type": "integer", "example": 0},
+                                "codigo": {"type": "integer", "example": 0},
+                                "descripcion": {"type": "string", "example": "string"},
+                                "precio": {"type": "integer", "example": 0},
+                            },
                         },
                     },
                 },
-            },
             }
         }
     )
@@ -327,7 +330,260 @@ class CarritoResource:
         cantidad = request.json.get("cantidad")
         return carrito.quitar(codigo, cantidad)
 
-# Registrar los recursos en la aplicación
+
+class PersonasResource:
+
+    @staticmethod
+    @app.route("/personas/<int:id>", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la persona.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {
+                    "description": "Datos de la persona.",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "integer", "example": 0},
+                            "dni": {"type": "string", "example": "string"},
+                            "nombre": {"type": "string", "example": "string"},
+                            "apellido": {"type": "string", "example": "string"},
+                            "fecha_nacimiento": {"type": "string", "example": "string"},
+                            "nacionalidad": {"type": "string", "example": "string"},
+                            "direccion": {"type": "string", "example": "string"},
+                            "ciudad": {"type": "string", "example": "string"},
+                            "codigo_postal": {"type": "string", "example": "string"},
+                            "telefono": {"type": "string", "example": "string"},
+                            "email": {"type": "string", "example": "string"},
+                            "estado_civil": {"type": "string", "example": "string"},
+                            "url_foto": {"type": "string", "example": "string"},
+                            "fecha_registro": {"type": "string", "example": "string"},
+                        },
+                    },
+                },
+                404: {"description": "Persona no encontrada."},
+            },
+        }
+    )
+    def obtener_persona(id):
+        """
+        Obtiene los datos de una persona según su id.
+        """
+        persona = legajo.consultar_persona(id)
+        if persona:
+            return (
+                jsonify(
+                    {
+                        "id": persona.id,
+                        "dni": persona.dni,
+                        "nombre": persona.nombre,
+                        "apellido": persona.apellido,
+                        "fecha_nacimiento": persona.fecha_nacimiento,
+                        "nacionalidad": persona.nacionalidad,
+                        "direccion": persona.direccion,
+                        "ciudad": persona.ciudad,
+                        "codigo_postal": persona.codigo_postal,
+                        "telefono": persona.telefono,
+                        "email": persona.email,
+                        "estado_civil": persona.estado_civil,
+                        "url_foto": persona.url_foto,
+                        "fecha_registro": persona.fecha_registro
+                    }
+                ),
+                200,
+            )
+        return jsonify({"message": "Persona no encontrada."}), 404
+
+    @staticmethod
+    @app.route("/personas", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "responses": {
+                200: {
+                    "description": "Datos de las personas.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "integer", "example": 0},
+                                "dni": {"type": "string", "example": "string"},
+                                "nombre": {"type": "string", "example": "string"},
+                                "apellido": {"type": "string", "example": "string"},
+                                "fecha_nacimiento": {"type": "string", "example": "string"},
+                                "nacionalidad": {"type": "string", "example": "string"},
+                                "direccion": {"type": "string", "example": "string"},
+                                "ciudad": {"type": "string", "example": "string"},
+                                "codigo_postal": {"type": "string", "example": "string"},
+                                "telefono": {"type": "string", "example": "string"},
+                                "email": {"type": "string", "example": "string"},
+                                "estado_civil": {"type": "string", "example": "string"},
+                                "url_foto": {"type": "string", "example": "string"},
+                                "fecha_registro": {"type": "string", "example": "string"},
+                            },
+                        },
+                    },
+                },
+            }
+        }
+    )
+    def obtener_personas():
+        """
+        Obtiene la lista de personas del legajo.
+        """
+        return legajo.listar_personas()
+
+    @staticmethod
+    @app.route("/personas", methods=["POST"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "dni": {"type": "string", "example": "string"},
+                            "nombre": {"type": "string", "example": "string"},
+                            "apellido": {"type": "string", "example": "string"},
+                            "fecha_nacimiento": {"type": "string", "example": "string"},
+                            "nacionalidad": {"type": "string", "example": "string"},
+                            "direccion": {"type": "string", "example": "string"},
+                            "ciudad": {"type": "string", "example": "string"},
+                            "codigo_postal": {"type": "string", "example": "string"},
+                            "telefono": {"type": "string", "example": "string"},
+                            "email": {"type": "string", "example": "string"},
+                            "estado_civil": {"type": "string", "example": "string"},
+                            "url_foto": {"type": "string", "example": "string"},
+                        },
+                        "required": ["id", "dni", "nombre", "apellido", "fecha_nacimiento", "nacionalidad", "direccion", "ciudad", "codigo_postal", "telefono", "email", "estado_civil", "url_foto"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Persona agregada correctamente."},
+            },
+        }
+    )
+    def agregar_persona():
+        """
+        Agrega una persona al legajo.
+        """
+        dni = request.json.get("dni")
+        nombre = request.json.get("nombre")
+        apellido = request.json.get("apellido")
+        fecha_nacimiento = request.json.get("fecha_nacimiento")
+        nacionalidad = request.json.get("nacionalidad")
+        direccion = request.json.get("direccion")
+        ciudad = request.json.get("ciudad")
+        codigo_postal = request.json.get("codigo_postal")
+        telefono = request.json.get("telefono")
+        email = request.json.get("email")
+        estado_civil = request.json.get("estado_civil")
+        url_foto = request.json.get("url_foto")
+        return legajo.agregar_persona(dni, nombre, apellido, fecha_nacimiento, nacionalidad, direccion, ciudad, codigo_postal, telefono, email, estado_civil, url_foto)
+
+    @staticmethod
+    @app.route("/personas/<int:id>", methods=["PUT"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la persona.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "dni": {"type": "string", "example": "string"},
+                            "nombre": {"type": "string", "example": "string"},
+                            "apellido": {"type": "string", "example": "string"},
+                            "fecha_nacimiento": {"type": "string", "example": "string"},
+                            "nacionalidad": {"type": "string", "example": "string"},
+                            "direccion": {"type": "string", "example": "string"},
+                            "ciudad": {"type": "string", "example": "string"},
+                            "codigo_postal": {"type": "string", "example": "string"},
+                            "telefono": {"type": "string", "example": "string"},
+                            "email": {"type": "string", "example": "string"},
+                            "estado_civil": {"type": "string", "example": "string"},
+                            "url_foto": {"type": "string", "example": "string"},
+                        },
+                        "required": ["id", "dni", "nombre", "apellido", "fecha_nacimiento", "nacionalidad", "direccion", "ciudad", "codigo_postal", "telefono", "email", "estado_civil", "url_foto"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Persona modificada correctamente."},
+                400: {"description": "Persona no encontrada."},
+            },
+        }
+    )
+    def modificar_persona(id):
+        """
+        Modifica una persona del legajo.
+        """
+        dni = request.json.get("dni")
+        nombre = request.json.get("nombre")
+        apellido = request.json.get("apellido")
+        fecha_nacimiento = request.json.get("fecha_nacimiento")
+        nacionalidad = request.json.get("nacionalidad")
+        direccion = request.json.get("direccion")
+        ciudad = request.json.get("ciudad")
+        codigo_postal = request.json.get("codigo_postal")
+        telefono = request.json.get("telefono")
+        email = request.json.get("email")
+        estado_civil = request.json.get("estado_civil")
+        url_foto = request.json.get("url_foto")
+        return legajo.modificar_persona(id, dni, nombre, apellido, fecha_nacimiento, nacionalidad, direccion, ciudad, codigo_postal, telefono, email, estado_civil, url_foto)
+
+    @staticmethod
+    @app.route("/personas/<int:id>", methods=["DELETE"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la persona a eliminar.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {"description": "Persona eliminada correctamente."},
+                400: {"description": "Persona no encontrada."},
+            },
+        }
+    )
+    def eliminar_persona(id):
+        """
+        Elimina una persona del legajo.
+        """
+        return legajo.eliminar_persona(id)
+
+
 app.add_url_rule(
     "/productos/<int:codigo>",
     view_func=ProductosResource.obtener_producto,
@@ -366,6 +622,31 @@ app.add_url_rule(
 app.add_url_rule(
     "/carrito",
     view_func=CarritoResource.eliminar_carrito,
+    methods=["DELETE"],
+)
+app.add_url_rule(
+    "/personas/<int:id>",
+    view_func=PersonasResource.obtener_persona,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/personas",
+    view_func=PersonasResource.obtener_personas,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/personas",
+    view_func=PersonasResource.agregar_persona,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/personas/<int:id>",
+    view_func=PersonasResource.modificar_persona,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/personas/<int:id>",
+    view_func=PersonasResource.eliminar_persona,
     methods=["DELETE"],
 )
 
