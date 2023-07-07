@@ -1,6 +1,8 @@
 from persona import Persona
+from animal import Animal
 from db import get_db_connection
 from flask import jsonify
+
 
 class Legajo:
     def __init__(self):
@@ -24,7 +26,7 @@ class Legajo:
         return None
 
     def modificar_persona(self, id, dni, nombre, apellido, fecha_nacimiento, nacionalidad, direccion, ciudad,
-                        codigo_postal, telefono, email, estado_civil, url_foto):
+                          codigo_postal, telefono, email, estado_civil, url_foto):
         producto = self.consultar_persona(id)
         if producto:
             sql = f'UPDATE persona SET dni = "{dni}", nombre = "{nombre}", apellido = "{apellido}", fecha_nacimiento = "{fecha_nacimiento}", nacionalidad = "{nacionalidad}", direccion = "{direccion}", ciudad = "{ciudad}", codigo_postal = "{codigo_postal}", telefono = "{telefono}", email = "{email}", estado_civil = "{estado_civil}", url_foto = "{url_foto}" WHERE id = {id};'
@@ -48,6 +50,49 @@ class Legajo:
         for row in rows:
             id, dni, nombre, apellido, fecha_nacimiento, nacionalidad, direccion, ciudad, codigo_postal, telefono, email, estado_civil, url_foto, fecha_registro = row
             persona = {'id': id, 'dni': dni, 'nombre': nombre, 'apellido': apellido, 'fecha_nacimiento': fecha_nacimiento, 'nacionalidad': nacionalidad, 'direccion': direccion,
-                    'ciudad': ciudad, 'codigo_postal': codigo_postal, 'telefono': telefono, 'email': email, 'estado_civil': estado_civil, 'url_foto': url_foto, 'fecha_registro': fecha_registro}
+                       'ciudad': ciudad, 'codigo_postal': codigo_postal, 'telefono': telefono, 'email': email, 'estado_civil': estado_civil, 'url_foto': url_foto, 'fecha_registro': fecha_registro}
             personas.append(persona)
         return jsonify(personas), 200
+
+    def agregar_animal(self, nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen):
+        sql = f'INSERT INTO animal (nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen) VALUES ("{nombre}", "{genero}", {edad}, "{raza}", {id_animal_tipo}, {castrado}, {desparasitado}, {vacunado}, {adoptado}, "{url_imagen}");'
+        self.cursor.execute(sql)
+        self.conexion.commit()
+        return jsonify({'message': 'Animal agregado correctamente.'}), 200
+
+    def consultar_animal(self, id):
+        sql = f'SELECT * FROM animal WHERE id = {id};'
+        self.cursor.execute(sql)
+        row = self.cursor.fetchone()
+        if row:
+            id, nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen = row
+            return Animal(id, nombre, genero, edad, raza, id_animal_tipo, bool(castrado), bool(desparasitado), bool(vacunado), bool(adoptado), url_imagen)
+        return None
+
+    def modificar_animal(self, id, nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen):
+        producto = self.consultar_animal(id)
+        if producto:
+            sql = f'UPDATE animal SET nombre = "{nombre}", genero = "{genero}", edad = {edad}, raza = "{raza}", id_animal_tipo = {id_animal_tipo}, castrado = {castrado}, desparasitado = {desparasitado}, vacunado = {vacunado}, adoptado = {adoptado}, url_imagen = "{url_imagen}" WHERE id = {id};'
+            self.cursor.execute(sql)
+            self.conexion.commit()
+            return jsonify({'message': 'Animal modificado correctamente.'}), 200
+        return jsonify({'message': 'Animal no encontrado.'}), 404
+
+    def eliminar_animal(self, id):
+        sql = f'DELETE FROM animal WHERE id = {id};'
+        self.cursor.execute(sql)
+        if self.cursor.rowcount > 0:
+            self.conexion.commit()
+            return jsonify({'message': 'Animal eliminado correctamente.'}), 200
+        return jsonify({'message': 'Animal no encontrado.'}), 404
+
+    def listar_animales(self):
+        self.cursor.execute("SELECT * FROM animal")
+        rows = self.cursor.fetchall()
+        animales = []
+        for row in rows:
+            id, nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen = row
+            animal = {'id': id, 'nombre': nombre, 'genero': genero, 'edad': edad, 'raza': raza, 'id_animal_tipo': id_animal_tipo,
+                      'castrado': bool(castrado), 'desparasitado': bool(desparasitado), 'vacunado': bool(vacunado), 'adoptado': bool(adoptado), 'url_imagen': url_imagen}
+            animales.append(animal)
+        return jsonify(animales), 200

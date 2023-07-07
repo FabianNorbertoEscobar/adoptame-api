@@ -584,6 +584,244 @@ class PersonasResource:
         return legajo.eliminar_persona(id)
 
 
+class AnimalesResource:
+
+    @staticmethod
+    @app.route("/animales/<int:id>", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id del animal.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {
+                    "description": "Datos del animal.",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "integer", "example": 0},
+                            "nombre": {"type": "string", "example": "string"},
+                            "genero": {"type": "string", "example": "string"},
+                            "edad": {"type": "integer", "example": 0},
+                            "raza": {"type": "string", "example": "string"},
+                            "id_animal_tipo": {"type": "integer", "example": 0},
+                            "castrado": {"type": "bool", "example": True},
+                            "desparasitado": {"type": "string", "example": True},
+                            "vacunado": {"type": "string", "example": True},
+                            "adoptado": {"type": "string", "example": True},
+                            "url_imagen": {"type": "string", "example": "string"},
+                        },
+                    },
+                },
+                404: {"description": "Animal no encontrado."},
+            },
+        }
+    )
+    def obtener_animal(id):
+        """
+        Obtiene los datos de un animal según su id.
+        """
+        animal = legajo.consultar_animal(id)
+        if animal:
+            return (
+                jsonify(
+                    {
+                        "id": animal.id,
+                        "nombre": animal.nombre,
+                        "genero": animal.genero,
+                        "edad": animal.edad,
+                        "raza": animal.raza,
+                        "id_animal_tipo": animal.id_animal_tipo,
+                        "castrado": animal.castrado,
+                        "desparasitado": animal.desparasitado,
+                        "vacunado": animal.vacunado,
+                        "adoptado": animal.adoptado,
+                        "url_foto": animal.url_imagen,
+                    }
+                ),
+                200,
+            )
+        return jsonify({"message": "Animal no encontrado."}), 404
+
+    @staticmethod
+    @app.route("/animales", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "responses": {
+                200: {
+                    "description": "Datos de los animales.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "integer", "example": 0},
+                                "nombre": {"type": "string", "example": "string"},
+                                "genero": {"type": "string", "example": "string"},
+                                "edad": {"type": "integer", "example": 0},
+                                "raza": {"type": "string", "example": "string"},
+                                "id_animal_tipo": {"type": "integer", "example": 0},
+                                "castrado": {"type": "bool", "example": True},
+                                "desparasitado": {"type": "string", "example": True},
+                                "vacunado": {"type": "string", "example": True},
+                                "adoptado": {"type": "string", "example": True},
+                                "url_imagen": {"type": "string", "example": "string"},
+                            },
+                        },
+                    },
+                },
+            }
+        }
+    )
+    def obtener_animales():
+        """
+        Obtiene la lista de animales del legajo.
+        """
+        return legajo.listar_animales()
+
+    @staticmethod
+    @app.route("/animales", methods=["POST"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "nombre": {"type": "string", "example": "string"},
+                            "genero": {"type": "string", "example": "string"},
+                            "edad": {"type": "integer", "example": 0},
+                            "raza": {"type": "string", "example": "string"},
+                            "id_animal_tipo": {"type": "integer", "example": 0},
+                            "castrado": {"type": "bool", "example": True},
+                            "desparasitado": {"type": "string", "example": True},
+                            "vacunado": {"type": "string", "example": True},
+                            "adoptado": {"type": "string", "example": True},
+                            "url_imagen": {"type": "string", "example": "string"},
+                        },
+                        "required": ["nombre", "genero", "edad", "raza", "id_animal_tipo", "castrado", "desparasitado", "vacunado", "adoptado", "url_imagen"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Animal agregado correctamente."},
+            },
+        }
+    )
+    def agregar_animal():
+        """
+        Agrega un animal al legajo.
+        """
+        nombre = request.json.get("nombre")
+        genero = request.json.get("genero")
+        edad = request.json.get("edad")
+        raza = request.json.get("raza")
+        id_animal_tipo = request.json.get("id_animal_tipo")
+        castrado = request.json.get("castrado")
+        desparasitado = request.json.get("desparasitado")
+        vacunado = request.json.get("vacunado")
+        adoptado = request.json.get("adoptado")
+        url_imagen = request.json.get("url_imagen")
+        print(nombre)
+        print(castrado)
+        return legajo.agregar_animal(nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen)
+
+    @staticmethod
+    @app.route("/animales/<int:id>", methods=["PUT"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id del animal.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "nombre": {"type": "string", "example": "string"},
+                            "genero": {"type": "string", "example": "string"},
+                            "edad": {"type": "integer", "example": 0},
+                            "raza": {"type": "string", "example": "string"},
+                            "id_animal_tipo": {"type": "integer", "example": 0},
+                            "castrado": {"type": "bool", "example": True},
+                            "desparasitado": {"type": "string", "example": True},
+                            "vacunado": {"type": "string", "example": True},
+                            "adoptado": {"type": "string", "example": True},
+                            "url_imagen": {"type": "string", "example": "string"},
+                        },
+                        "required": ["nombre", "genero", "edad", "raza", "id_animal_tipo", "castrado", "desparasitado", "vacunado", "adoptado", "url_imagen"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Animal modificado correctamente."},
+                400: {"description": "Animal n|o encontrado."},
+            },
+        }
+    )
+    def modificar_animal(id):
+        """
+        Modifica un animal del legajo.
+        """
+        nombre = request.json.get("nombre")
+        genero = request.json.get("genero")
+        edad = request.json.get("edad")
+        raza = request.json.get("raza")
+        id_animal_tipo = request.json.get("id_animal_tipo")
+        castrado = request.json.get("castrado")
+        desparasitado = request.json.get("desparasitado")
+        vacunado = request.json.get("vacunado")
+        adoptado = request.json.get("adoptado")
+        url_imagen = request.json.get("url_imagen")
+        return legajo.modificar_animal(id, nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen)
+
+    @staticmethod
+    @app.route("/animales/<int:id>", methods=["DELETE"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id del animal a eliminar.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {"description": "Animal eliminado correctamente."},
+                400: {"description": "Animal no encontrado."},
+            },
+        }
+    )
+    def eliminar_animal(id):
+        """
+        Elimina un animal del legajo.
+        """
+        return legajo.eliminar_animal(id)
+
+
 app.add_url_rule(
     "/productos/<int:codigo>",
     view_func=ProductosResource.obtener_producto,
@@ -647,6 +885,31 @@ app.add_url_rule(
 app.add_url_rule(
     "/personas/<int:id>",
     view_func=PersonasResource.eliminar_persona,
+    methods=["DELETE"],
+)
+app.add_url_rule(
+    "/animales/<int:id>",
+    view_func=AnimalesResource.obtener_animal,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/animales",
+    view_func=AnimalesResource.obtener_animales,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/animales",
+    view_func=AnimalesResource.agregar_animal,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/animales/<int:id>",
+    view_func=AnimalesResource.modificar_animal,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/animales/<int:id>",
+    view_func=AnimalesResource.eliminar_animal,
     methods=["DELETE"],
 )
 

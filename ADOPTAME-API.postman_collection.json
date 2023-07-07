@@ -299,6 +299,117 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adoptado\": false,\r\n  \"castrado\": true,\r\n  \"desparasitado\": true,\r\n  \"edad\": 3,\r\n  \"genero\": \"femenino\",\r\n  \"id_animal_tipo\": 1,\r\n  \"nombre\": \"Amaia\",\r\n  \"raza\": \"mestiza\",\r\n  \"url_imagen\": \"link\",\r\n  \"vacunado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/animales",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adoptado\": false,\r\n  \"castrado\": true,\r\n  \"desparasitado\": true,\r\n  \"edad\": 3,\r\n  \"genero\": \"femenino\",\r\n  \"id_animal_tipo\": 1,\r\n  \"nombre\": \"Amaia\",\r\n  \"raza\": \"linda\",\r\n  \"url_imagen\": \"link\",\r\n  \"vacunado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/animales/27",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales/27",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"27"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
