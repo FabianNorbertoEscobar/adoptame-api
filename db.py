@@ -88,6 +88,31 @@ def create_tables():
     ''')
     conn.commit()
 
+    print("Creando tabla compra si no existe...")
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS compra (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username INT NOT NULL,
+            precio REAL NOT NULL,
+            fecha_hora TIMESTAMP NOT NULL
+        );
+    ''')
+    conn.commit()
+
+    print("Creando tabla compra_item si no existe...")
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS compra_item (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_compra INTEGER NOT NULL,
+            id_producto INTEGER NOT NULL,
+            cantidad INTEGER NOT NULL,
+            precio_unitario REAL NOT NULL,
+            FOREIGN KEY (id_compra) REFERENCES compra (id),
+            FOREIGN KEY (id_producto) REFERENCES producto (id)
+        );
+    ''')
+    conn.commit()
+
     print("Fin creacion de tablas...")
 
     cursor.close()
@@ -112,6 +137,8 @@ def populate_tables():
         DELETE FROM animal;
         DELETE FROM persona;
         DELETE FROM adopcion;
+        DELETE FROM compra;
+        DELETE FROM compra_item;
     ''')
     conn.commit()
     print("Fin de vaciado de tablas")
@@ -263,6 +290,18 @@ def populate_tables():
         VALUES (24, 7, CURRENT_TIMESTAMP);
         INSERT INTO adopcion (id_animal, id_persona, fecha_hora)
         VALUES (25, 8, CURRENT_TIMESTAMP);
+    ''')
+    conn.commit()
+
+    print("Insertando en tabla compra...")
+    cursor.executescript('''
+    
+    ''')
+    conn.commit()
+
+    print("Insertando en tabla compra_item...")
+    cursor.executescript('''
+    
     ''')
     conn.commit()
 
