@@ -410,6 +410,117 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopcion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_animal\": 1,\r\n    \"id_persona\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/adopciones",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_animal\": 2,\r\n    \"id_persona\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/adopciones/11",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones/11",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"11"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

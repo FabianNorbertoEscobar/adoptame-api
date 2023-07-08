@@ -734,8 +734,6 @@ class AnimalesResource:
         vacunado = request.json.get("vacunado")
         adoptado = request.json.get("adoptado")
         url_imagen = request.json.get("url_imagen")
-        print(nombre)
-        print(castrado)
         return legajo.agregar_animal(nombre, genero, edad, raza, id_animal_tipo, castrado, desparasitado, vacunado, adoptado, url_imagen)
 
     @staticmethod
@@ -775,7 +773,7 @@ class AnimalesResource:
             ],
             "responses": {
                 200: {"description": "Animal modificado correctamente."},
-                400: {"description": "Animal n|o encontrado."},
+                400: {"description": "Animal no encontrado."},
             },
         }
     )
@@ -820,6 +818,189 @@ class AnimalesResource:
         Elimina un animal del legajo.
         """
         return legajo.eliminar_animal(id)
+
+
+class AdopcionesResource:
+
+    @staticmethod
+    @app.route("/adopciones/<int:id>", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la adopción.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {
+                    "description": "Datos de la adopción.",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "integer", "example": 0},
+                            "id_animal": {"type": "integer", "example": 0},
+                            "id_persona": {"type": "integer", "example": 0},
+                            "fecha_hora": {"type": "string", "example": "string"},
+                        },
+                    },
+                },
+                404: {"description": "Adopción no encontrada."},
+            },
+        }
+    )
+    def obtener_adopcion(id):
+        """
+        Obtiene los datos de una adopción según su id.
+        """
+        adopcion = legajo.consultar_adopcion(id)
+        if adopcion:
+            return (
+                jsonify(
+                    {
+                        "id": adopcion.id,
+                        "id_animal": adopcion.id_animal,
+                        "id_persona": adopcion.id_persona,
+                        "fecha_hora": adopcion.fecha_hora
+                    }
+                ),
+                200,
+            )
+        return jsonify({"message": "Adopción no encontrada."}), 404
+
+    @staticmethod
+    @app.route("/adopciones", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "responses": {
+                200: {
+                    "description": "Datos de las adopciones.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "integer", "example": 0},
+                                "id_animal": {"type": "integer", "example": 0},
+                                "id_persona": {"type": "integer", "example": 0},
+                                "fecha_hora": {"type": "string", "example": "string"},
+                            },
+                        },
+                    },
+                },
+            }
+        }
+    )
+    def obtener_adopciones():
+        """
+        Obtiene la lista de adopciones de animales.
+        """
+        return legajo.listar_adopciones()
+
+    @staticmethod
+    @app.route("/adopciones", methods=["POST"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id_animal": {"type": "integer", "example": 0},
+                            "id_persona": {"type": "integer", "example": 0},
+                        },
+                        "required": ["id_animal", "id_persona"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Adopción agregada correctamente."},
+            },
+        }
+    )
+    def agregar_adopcion():
+        """
+        Agrega la adopción de un animal.
+        """
+        id_animal = request.json.get("id_animal")
+        id_persona = request.json.get("id_persona")
+        return legajo.agregar_adopcion(id_animal, id_persona)
+
+    @staticmethod
+    @app.route("/adopciones/<int:id>", methods=["PUT"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la adopción.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                },
+                {
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id_animal": {"type": "integer", "example": 0},
+                            "id_persona": {"type": "integer", "example": 0},
+                        },
+                        "required": ["id_animal", "id_persona"],
+                    },
+                }
+            ],
+            "responses": {
+                200: {"description": "Adopción modificada correctamente."},
+                400: {"description": "Adopción no encontrada."},
+            },
+        }
+    )
+    def modificar_adopcion(id):
+        """
+        Modifica la adopción de un animal.
+        """
+        id_animal = request.json.get("id_animal")
+        id_persona = request.json.get("id_persona")
+        return legajo.modificar_adopcion(id, id_animal, id_persona)
+
+    @staticmethod
+    @app.route("/adopciones/<int:id>", methods=["DELETE"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "name": "id",
+                    "description": "El id de la adopción a eliminar.",
+                    "in": "path",
+                    "type": "integer",
+                    "required": True,
+                }
+            ],
+            "responses": {
+                200: {"description": "Adopción eliminado correctamente."},
+                400: {"description": "Adopción no encontrada."},
+            },
+        }
+    )
+    def eliminar_adopcion(id):
+        """
+        Elimina la adopción de un animal.
+        """
+        return legajo.eliminar_adopcion(id)
 
 
 app.add_url_rule(
@@ -910,6 +1091,31 @@ app.add_url_rule(
 app.add_url_rule(
     "/animales/<int:id>",
     view_func=AnimalesResource.eliminar_animal,
+    methods=["DELETE"],
+)
+app.add_url_rule(
+    "/adopciones/<int:id>",
+    view_func=AdopcionesResource.obtener_adopcion,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/adopciones",
+    view_func=AdopcionesResource.obtener_adopciones,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/adopciones",
+    view_func=AdopcionesResource.agregar_adopcion,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/adopciones/<int:id>",
+    view_func=AdopcionesResource.modificar_adopcion,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/animales/<int:id>",
+    view_func=AdopcionesResource.eliminar_adopcion,
     methods=["DELETE"],
 )
 

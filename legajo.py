@@ -1,8 +1,8 @@
 from persona import Persona
 from animal import Animal
+from adopcion import Adopcion
 from db import get_db_connection
 from flask import jsonify
-
 
 class Legajo:
     def __init__(self):
@@ -96,3 +96,45 @@ class Legajo:
                       'castrado': bool(castrado), 'desparasitado': bool(desparasitado), 'vacunado': bool(vacunado), 'adoptado': bool(adoptado), 'url_imagen': url_imagen}
             animales.append(animal)
         return jsonify(animales), 200
+
+    def agregar_adopcion(self, id_animal, id_persona):
+        sql = f'INSERT INTO adopcion (id_animal, id_persona, fecha_hora) VALUES ({id_animal}, {id_persona}, CURRENT_TIMESTAMP);'
+        self.cursor.execute(sql)
+        self.conexion.commit()
+        return jsonify({'message': 'Adopción agregada correctamente.'}), 200
+
+    def consultar_adopcion(self, id):
+        sql = f'SELECT * FROM adopcion WHERE id = {id};'
+        self.cursor.execute(sql)
+        row = self.cursor.fetchone()
+        if row:
+            id, id_animal, id_persona, fecha_hora = row
+            return Adopcion(id, id_animal, id_persona, fecha_hora)
+        return None
+        
+    def modificar_adopcion(self, id, id_animal, id_persona):
+        adopcion = self.consultar_adopcion(id)
+        if adopcion:
+            sql = f'UPDATE adopcion SET id_animal = {id_animal}, id_persona = {id_persona} WHERE id = {id};'
+            self.cursor.execute(sql)
+            self.conexion.commit()
+            return jsonify({'message': 'Adopción modificada correctamente.'}), 200
+        return jsonify({'message': 'Adopción no encontrada.'}), 404
+
+    def eliminar_adopcion(self, id):
+        sql = f'DELETE FROM adopcion WHERE id = {id};'
+        self.cursor.execute(sql)
+        if self.cursor.rowcount > 0:
+            self.conexion.commit()
+            return jsonify({'message': 'Adopción eliminada correctamente.'}), 200
+        return jsonify({'message': 'Adopción no encontrada.'}), 404
+
+    def listar_adopciones(self):
+        self.cursor.execute("SELECT * FROM adopcion")
+        rows = self.cursor.fetchall()
+        adopciones = []
+        for row in rows:
+            id, id_animal, id_persona, fecha_hora = row
+            adopcion = {'id': id, 'id_animal': id_animal, 'id_persona': id_persona, 'fecha_hora': fecha_hora}
+            adopciones.append(adopcion)
+        return jsonify(adopciones), 200
