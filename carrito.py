@@ -45,6 +45,14 @@ class Carrito:
                 return jsonify({'message': 'Producto quitado del carrito correctamente.'}), 200
         return jsonify({'message': 'El producto no se encuentra en el carrito.'}), 404
 
+    def vaciar(self):
+        for item in self.items:
+            sql = f'UPDATE productos SET cantidad = cantidad + {item.cantidad} WHERE codigo = {item.codigo};'
+            self.cursor.execute(sql)
+            self.conexion.commit()
+        self.items = []
+        return jsonify({'message': 'Carrito vaciado correctamente.'}), 200
+
     def mostrar(self):
         productos_carrito = []
         for item in self.items:

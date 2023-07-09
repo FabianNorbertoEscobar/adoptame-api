@@ -330,6 +330,22 @@ class CarritoResource:
         cantidad = request.json.get("cantidad")
         return carrito.quitar(codigo, cantidad)
 
+    @staticmethod
+    @app.route("/carrito/vaciar", methods=["DELETE"])
+    @swag_from(
+        {
+            "consumes": ["application/json"],
+            "produces": ["application/json"],
+            "responses": {
+                200: {"description": "Carrito vaciado correctamente."},
+            },
+        }
+    )
+    def vaciar_carrito():
+        """
+        Vacía el carrito.
+        """
+        return carrito.vaciar()
 
 class PersonasResource:
 
@@ -1041,6 +1057,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/carrito",
     view_func=CarritoResource.eliminar_carrito,
+    methods=["DELETE"],
+)
+app.add_url_rule(
+    "/carrito/vaciar",
+    view_func=CarritoResource.vaciar_carrito,
     methods=["DELETE"],
 )
 app.add_url_rule(
