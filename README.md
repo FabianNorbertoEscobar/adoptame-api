@@ -17,8 +17,17 @@ Adóptame API es el API REST de Adóptame, un sitio web de adopción de animales
 ### Sitio web:
 [Adóptame](https://adoptame-ba.netlify.app)
 
+### Panel de administracion:
+[Adóptame admin](https://adoptame-ba.netlify.app/admin.html)
+
 #### Ambiente de desarrollo:
 [Adóptame DEV](https://fabiannorbertoescobar.github.io/adoptame/)
+
+#### Ambiente de desarrollo:
+[Adóptame DEV admin](https://fabiannorbertoescobar.github.io/adoptame/admin.html)
+
+### Repo frontend:
+[Repo frontend](https://github.com/FabianNorbertoEscobar/adoptame/)
 
 #### Estado de despliegue en Netlify:
 
