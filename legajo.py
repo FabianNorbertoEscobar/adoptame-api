@@ -100,6 +100,8 @@ class Legajo:
     def agregar_adopcion(self, id_animal, id_persona):
         sql = f'INSERT INTO adopcion (id_animal, id_persona, fecha_hora) VALUES ({id_animal}, {id_persona}, CURRENT_TIMESTAMP);'
         self.cursor.execute(sql)
+        sql = f'UPDATE animal SET adoptado = TRUE WHERE id = {id_animal};'
+        self.cursor.execute(sql)
         self.conexion.commit()
         return jsonify({'message': 'Adopción agregada correctamente.'}), 200
 
@@ -111,17 +113,24 @@ class Legajo:
             id, id_animal, id_persona, fecha_hora = row
             return Adopcion(id, id_animal, id_persona, fecha_hora)
         return None
-        
+
     def modificar_adopcion(self, id, id_animal, id_persona):
         adopcion = self.consultar_adopcion(id)
         if adopcion:
+            sql = f'UPDATE animal SET adoptado = FALSE WHERE id = {adopcion.id_animal};'
+            self.cursor.execute(sql)
             sql = f'UPDATE adopcion SET id_animal = {id_animal}, id_persona = {id_persona} WHERE id = {id};'
+            self.cursor.execute(sql)
+            sql = f'UPDATE animal SET adoptado = TRUE WHERE id = {id_animal};'
             self.cursor.execute(sql)
             self.conexion.commit()
             return jsonify({'message': 'Adopción modificada correctamente.'}), 200
         return jsonify({'message': 'Adopción no encontrada.'}), 404
 
     def eliminar_adopcion(self, id):
+        adopcion = self.consultar_adopcion(id)
+        sql = f'UPDATE animal SET adoptado = FALSE WHERE id = {adopcion.id_animal};'
+        self.cursor.execute(sql)
         sql = f'DELETE FROM adopcion WHERE id = {id};'
         self.cursor.execute(sql)
         if self.cursor.rowcount > 0:
