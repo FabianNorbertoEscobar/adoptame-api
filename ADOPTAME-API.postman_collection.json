@@ -1,0 +1,526 @@
+{
+	"info": {
+		"_postman_id": "bfe10559-b1d9-4fba-ad11-0a5c1f78c6f8",
+		"name": "ADOPTAME-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6962286"
+	},
+	"item": [
+		{
+			"name": "productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/productos",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "producto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/productos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"productos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidad\": 30,\r\n    \"codigo\": 8,\r\n    \"descripcion\": \"Huesos para perros\",\r\n    \"precio\": 3500.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/productos",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidad\": 25,\r\n    \"descripcion\": \"Ratitas de goma\",\r\n    \"precio\": 1000.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/productos/6",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"productos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/productos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"productos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carrito",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/carrito",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"carrito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carrito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidad\": 10,\r\n    \"codigo\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/carrito",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"carrito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carrito",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cantidad\": 4,\r\n    \"codigo\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/carrito",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"carrito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "persona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"apellido\": \"Escobar2\",\r\n  \"ciudad\": \"Laferrere\",\r\n  \"codigo_postal\": \"1759B\",\r\n  \"direccion\": \"Riglos 1234\",\r\n  \"dni\": \"99999999\",\r\n  \"email\": \"fabian.escobar@gmail.com\",\r\n  \"estado_civil\": \"Juntado\",\r\n  \"fecha_nacimiento\": \"1995-08-03\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"nombre\": \"Fabián\",\r\n  \"telefono\": \"+5491122334455\",\r\n  \"url_foto\": \"http://ejemplo.com/foto9.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/personas",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"apellido\": \"Escobar1\",\r\n  \"ciudad\": \"Laferrere\",\r\n  \"codigo_postal\": \"1759B\",\r\n  \"direccion\": \"Riglos 1234\",\r\n  \"dni\": \"99999999\",\r\n  \"email\": \"fabian.escobar@gmail.com\",\r\n  \"estado_civil\": \"Juntado\",\r\n  \"fecha_nacimiento\": \"1995-08-03\",\r\n  \"nacionalidad\": \"Argentina\",\r\n  \"nombre\": \"Fabián\",\r\n  \"telefono\": \"+5491122334455\",\r\n  \"url_foto\": \"http://ejemplo.com/foto9.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/personas/9",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "personas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/personas/10",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"personas",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adoptado\": false,\r\n  \"castrado\": true,\r\n  \"desparasitado\": true,\r\n  \"edad\": 3,\r\n  \"genero\": \"femenino\",\r\n  \"id_animal_tipo\": 1,\r\n  \"nombre\": \"Amaia\",\r\n  \"raza\": \"mestiza\",\r\n  \"url_imagen\": \"link\",\r\n  \"vacunado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/animales",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"adoptado\": false,\r\n  \"castrado\": true,\r\n  \"desparasitado\": true,\r\n  \"edad\": 3,\r\n  \"genero\": \"femenino\",\r\n  \"id_animal_tipo\": 1,\r\n  \"nombre\": \"Amaia\",\r\n  \"raza\": \"linda\",\r\n  \"url_imagen\": \"link\",\r\n  \"vacunado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/animales/27",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales/27",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopcion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_animal\": 1,\r\n    \"id_persona\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/adopciones",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_animal\": 2,\r\n    \"id_persona\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/adopciones/11",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adopciones",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/adopciones/11",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"adopciones",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
