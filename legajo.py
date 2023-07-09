@@ -97,6 +97,16 @@ class Legajo:
             animales.append(animal)
         return jsonify(animales), 200
 
+    def listar_tipos_animales(self):
+        self.cursor.execute("SELECT * FROM animal_tipo")
+        rows = self.cursor.fetchall()
+        tipos = []
+        for row in rows:
+            id, descripcion = row
+            tipo = {'id': id, 'descripcion': descripcion}
+            tipos.append(tipo)
+        return jsonify(tipos), 200
+
     def agregar_adopcion(self, id_animal, id_persona):
         sql = f'INSERT INTO adopcion (id_animal, id_persona, fecha_hora) VALUES ({id_animal}, {id_persona}, CURRENT_TIMESTAMP);'
         self.cursor.execute(sql)

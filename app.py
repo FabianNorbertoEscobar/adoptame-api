@@ -704,6 +704,34 @@ class AnimalesResource:
         return legajo.listar_animales()
 
     @staticmethod
+    @app.route("/animales/tipos", methods=["GET"])
+    @swag_from(
+        {
+            "produces": ["application/json"],
+            "responses": {
+                200: {
+                    "description": "Datos de los tipos de animales.",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "integer", "example": 0},
+                                "descripcion": {"type": "string", "example": "string"},
+                            },
+                        },
+                    },
+                },
+            }
+        }
+    )
+    def obtener_tipos_animales():
+        """
+        Obtiene la lista de tipos de animales del legajo.
+        """
+        return legajo.listar_tipos_animales()
+
+    @staticmethod
     @app.route("/animales", methods=["POST"])
     @swag_from(
         {
@@ -1097,6 +1125,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/animales",
     view_func=AnimalesResource.obtener_animales,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/animales/tipos",
+    view_func=AnimalesResource.obtener_tipos_animales,
     methods=["GET"],
 )
 app.add_url_rule(
