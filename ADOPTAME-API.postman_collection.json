@@ -190,6 +190,25 @@
 			"response": []
 		},
 		{
+			"name": "carrito vaciar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/carrito/vaciar",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"carrito",
+						"vaciar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "personas",
 			"request": {
 				"method": "GET",
@@ -517,6 +536,25 @@
 					"path": [
 						"adopciones",
 						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "animales tipos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/animales/tipos",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"animales",
+						"tipos"
 					]
 				}
 			},
