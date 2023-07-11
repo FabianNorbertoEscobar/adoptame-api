@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "bfe10559-b1d9-4fba-ad11-0a5c1f78c6f8",
-		"name": "ADOPTAME-API",
+		"_postman_id": "e8022007-b85d-48be-9b05-bca6dda27b69",
+		"name": "ADOPTAME-API PROD",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6962286"
 	},
@@ -12,11 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/productos",
+					"raw": "fabianescobar.pythonanywhere.com/productos",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"productos"
 					]
@@ -30,11 +31,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/productos/1",
+					"raw": "fabianescobar.pythonanywhere.com/productos/1",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"productos",
 						"1"
@@ -58,11 +60,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/productos",
+					"raw": "fabianescobar.pythonanywhere.com/productos",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"productos"
 					]
@@ -85,11 +88,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/productos/6",
+					"raw": "fabianescobar.pythonanywhere.com/productos/6",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"productos",
 						"6"
@@ -104,11 +108,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/productos/1",
+					"raw": "fabianescobar.pythonanywhere.com/productos/1",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"productos",
 						"1"
@@ -123,11 +128,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/carrito",
+					"raw": "fabianescobar.pythonanywhere.com/carrito",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"carrito"
 					]
@@ -150,11 +156,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/carrito",
+					"raw": "fabianescobar.pythonanywhere.com/carrito",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"carrito"
 					]
@@ -177,11 +184,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/carrito",
+					"raw": "fabianescobar.pythonanywhere.com/carrito",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"carrito"
 					]
@@ -195,11 +203,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/carrito/vaciar",
+					"raw": "fabianescobar.pythonanywhere.com/carrito/vaciar",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"carrito",
 						"vaciar"
@@ -214,11 +223,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/personas",
+					"raw": "fabianescobar.pythonanywhere.com/personas",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"personas"
 					]
@@ -232,11 +242,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/personas/1",
+					"raw": "fabianescobar.pythonanywhere.com/personas/1",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"personas",
 						"1"
@@ -260,11 +271,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/personas",
+					"raw": "fabianescobar.pythonanywhere.com/personas",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"personas"
 					]
@@ -287,11 +299,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/personas/9",
+					"raw": "fabianescobar.pythonanywhere.com/personas/9",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"personas",
 						"9"
@@ -306,11 +319,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/personas/10",
+					"raw": "fabianescobar.pythonanywhere.com/personas/10",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"personas",
 						"10"
@@ -325,11 +339,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales",
+					"raw": "fabianescobar.pythonanywhere.com/animales",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales"
 					]
@@ -343,11 +358,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales/1",
+					"raw": "fabianescobar.pythonanywhere.com/animales/1",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales",
 						"1"
@@ -371,11 +387,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales",
+					"raw": "fabianescobar.pythonanywhere.com/animales",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales"
 					]
@@ -398,11 +415,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales/27",
+					"raw": "fabianescobar.pythonanywhere.com/animales/27",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales",
 						"27"
@@ -417,11 +435,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales/27",
+					"raw": "fabianescobar.pythonanywhere.com/animales/27",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales",
 						"27"
@@ -436,11 +455,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/adopciones",
+					"raw": "fabianescobar.pythonanywhere.com/adopciones",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"adopciones"
 					]
@@ -454,11 +474,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/adopciones/1",
+					"raw": "fabianescobar.pythonanywhere.com/adopciones/1",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"adopciones",
 						"1"
@@ -482,11 +503,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/adopciones",
+					"raw": "fabianescobar.pythonanywhere.com/adopciones",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"adopciones"
 					]
@@ -509,11 +531,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/adopciones/11",
+					"raw": "fabianescobar.pythonanywhere.com/adopciones/11",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"adopciones",
 						"11"
@@ -528,11 +551,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/adopciones/11",
+					"raw": "fabianescobar.pythonanywhere.com/adopciones/11",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"adopciones",
 						"11"
@@ -547,11 +571,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://fabianescobar.pythonanywhere.com/animales/tipos",
+					"raw": "fabianescobar.pythonanywhere.com/animales/tipos",
 					"host": [
-						"localhost"
+						"fabianescobar",
+						"pythonanywhere",
+						"com"
 					],
-					"port": "5000",
 					"path": [
 						"animales",
 						"tipos"
